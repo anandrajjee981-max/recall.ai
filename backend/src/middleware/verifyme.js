@@ -11,16 +11,17 @@ export default async function verifyme(req,res,next){
 let decoded 
 try{
 decoded = jwt.verify(token,process.env.JWT_SECRET)
-const user = await usermodel.find(decoded.id)
+const user = await usermodel.findById(decoded.id);
 req.user = user 
 next()
 
 }
 catch(err){
-    throw err 
-    return res.status(500).json({
-        message : "internal server error"
-    })
+    console.error(err);
+
+  return res.status(500).json({
+    message: "Internal server error",
+  });
 }
 
 }

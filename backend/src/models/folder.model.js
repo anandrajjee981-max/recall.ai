@@ -1,38 +1,25 @@
 import mongoose from "mongoose";
 
-const folderSchema = new mongoose.Schema({
-    username:{
-        type :mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true  
+const folderSchema = new mongoose.Schema(
+  {
+    username: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
     },
-name: {
-    type: String,
-    required: true
-},
-url:{
-    type: String,
-    required: true  
-},
-description:{
-    type: String,
-    required: true 
-},
 
+    title: {
+      type: String,
+      required: true,
+    },
 
+    description: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-
-})
-
-
-const foldermodel = mongoose.model("Folder", folderSchema);
-
-export default foldermodel;
-
-
-
-
-
-
-
-
+export default mongoose.model("Folder", folderSchema);
