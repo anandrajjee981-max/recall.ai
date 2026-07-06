@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🧠 Second Brain AI</h2>
+
+    <!-- Login form (shown if not logged in) -->
+    <div id="loginView">
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+      <p id="loginError" class="error"></p>
+    </div>
+
+    <!-- Save view (shown if logged in) -->
+    <div id="saveView" class="hidden">
+      <p id="pageTitle"></p>
+      <button id="saveBtn">Save this page</button>
+      <p id="saveStatus"></p>
+      <button id="logoutBtn" class="secondary">Logout</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
