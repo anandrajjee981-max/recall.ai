@@ -8,6 +8,10 @@ const folderSchema = new mongoose.Schema(
       required: true,
     },
 
+    url: {
+      type: String,
+    },
+
     title: {
       type: String,
       required: true,
@@ -16,6 +20,13 @@ const folderSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+
+    saves: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Saved",
+      },
+    ],
   },
   {
     timestamps: true,

@@ -1,4 +1,5 @@
 import foldermodel from '../models/folder.model.js';
+import saveModel from '../models/save.model.js';
 import { queryGraph } from '../service/graph.service.js';
 
 export default async function processQuery(req, res) {
@@ -23,7 +24,41 @@ export default async function processQuery(req, res) {
   }
 }
 
+export async function getfolder(req,res){
+  try {
+    const user = req.user;
+    const folders = await foldermodel.find({ username: user._id })
+    return res.status(200).json({
+      message: "Folders retrieved successfully",
+      data: folders,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  } 
+}
 
+export async function getsaves(req,res){
+try{
+const user = req.user;
+const id = req.params.id
+const saves = await saveModel.find({ username: user._id, folder: id })
+return res.status(200).json({
+  message: "Saves retrieved successfully",
+  data: saves,  
+})
+}
+catch(err){
+return res.status(500).json({
+  message: "Internal server error",
+})
+}
+
+
+
+}
 
 
 
