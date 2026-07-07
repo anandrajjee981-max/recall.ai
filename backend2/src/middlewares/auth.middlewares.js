@@ -13,7 +13,16 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ message: "Not authorized, no token" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ message: "Access token expired", code: "TOKEN_EXPIRED" });
+      }
+      return res.status(401).json({ message: "Not authorized, token failed" });
+    }
+
     req.user = await User.findById(decoded.id).select("-password");
 
     if (!req.user) {

@@ -25,4 +25,6 @@ const librarySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+librarySchema.index({ user: 1 });
+
 module.exports = mongoose.model("Library", librarySchema);

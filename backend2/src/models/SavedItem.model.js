@@ -41,6 +41,11 @@ const savedItemSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    embedding: {
+    type: [Number],
+    default: [],
+    select: false, // don't return this huge array in normal queries unless explicitly asked
+    },
     tags: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -60,8 +65,16 @@ const savedItemSchema = new mongoose.Schema(
       type: Boolean,
       default: false, // for "Collections" feature later
     },
+    lastViewedAt: {
+    type: Date,
+    default: null,
+    },
   },
   { timestamps: true }
 );
+
+savedItemSchema.index({ user: 1, createdAt: -1 }); // speeds up getItems (sorted by newest)
+savedItemSchema.index({ user: 1, url: 1 }); // speeds up duplicate detection lookup
+savedItemSchema.index({ user: 1, library: 1 }); // speeds up filtering by library
 
 module.exports = mongoose.model("SavedItem", savedItemSchema);

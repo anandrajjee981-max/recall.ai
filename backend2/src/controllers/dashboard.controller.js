@@ -1,4 +1,5 @@
 const SavedItem = require("../models/SavedItem.model");
+const SearchHistory = require("../models/SearchHistory.model");
 const Library = require("../models/Library.model");
 
 // @route  GET /api/dashboard
@@ -34,11 +35,17 @@ const getDashboard = async (req, res) => {
       };
     });
 
+    // Get the user's 5 most recent searches (for "Search History" overview)
+    const recentSearches = await SearchHistory.find({ user: userId })
+      .sort({ createdAt: -1 })
+      .limit(5);
+
     res.status(200).json({
       totalItems,
       totalLibraries,
       recentItems,
       libraries: librariesWithCounts,
+      recentSearches,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

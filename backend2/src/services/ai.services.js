@@ -1,13 +1,10 @@
 const Anthropic = require("@anthropic-ai/sdk");
+const logger = require("../config/logger");
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-/**
- * Analyzes saved content and returns summary, tags, key points,
- * and either an existing matching library or a new library name.
- */
 const analyzeContent = async ({ title, rawContent, sourceType, existingLibraries }) => {
   const libraryNames = existingLibraries.map((lib) => lib.name);
 
@@ -46,13 +43,12 @@ Respond ONLY with valid JSON in this exact format, no extra text, no markdown fe
   const textBlock = response.content.find((block) => block.type === "text");
   const rawText = textBlock ? textBlock.text : "{}";
 
-  // Clean up in case the model wraps output in ```json fences anyway
   const cleaned = rawText.replace(/```json|```/g, "").trim();
 
   try {
     return JSON.parse(cleaned);
   } catch (err) {
-    console.error("Failed to parse AI response:", rawText);
+    logger.error(`Failed to parse AI response: ${rawText}`);
     throw new Error("AI returned invalid JSON");
   }
 };

@@ -1,5 +1,7 @@
 const express = require("express");
 const protect = require("../middlewares/auth.middleware");
+const validate = require("../middlewares/validate.middleware");
+const { createItemSchema, aiSaveItemSchema } = require("../validators/item.validator");
 const {
   createItem,
   getItems,
@@ -13,8 +15,8 @@ const router = express.Router();
 
 router.use(protect);
 
-router.post("/", createItem);
-router.post("/ai-save", aiSaveItem);
+router.post("/", validate(createItemSchema), createItem);
+router.post("/ai-save", validate(aiSaveItemSchema), aiSaveItem);
 router.get("/", getItems);
 router.get("/:id", getItemById);
 router.delete("/:id", deleteItem);

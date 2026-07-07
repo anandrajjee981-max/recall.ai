@@ -23,9 +23,23 @@ const userSchema = new mongoose.Schema(
       enum: ["local", "google", "github"],
       default: "local",
     },
+    providerId: {
+      type: String,
+      default: null,
+    },
     avatar: {
       type: String,
       default: "",
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+    refreshToken: {
+      type: String,
+      default: null,
+      select: false,
     },
   },
   {
