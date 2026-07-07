@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import '../../style/auth.css';
 import { Zap, Fingerprint, Binary } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from './hooks/useauth';
 
 export default function Login() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { handlelogin } = useAuth();
+  const [form, setForm] = useState({ email: '', password: '' });
+
+  async function submitHandler(e) {
+    e.preventDefault();
+    const res = await handlelogin(form.email, form.password);
+    if (res?.success) {
+      navigate('/page');
+    }
+  }
   return (
     <div className="auth-page">
       <div className="ticker-bar">
@@ -18,12 +30,12 @@ export default function Login() {
           <div className="brand-subtitle">NEURAL INTERFACE V2.4</div>
         </div>
 
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={submitHandler}>
           <div className="input-group">
             <label className="input-label">Recall ID</label>
             <div className="input-wrapper">
               <Fingerprint className="input-icon" size={18} />
-              <input type="email" name='email' autoComplete="new-email" className="auth-input" placeholder="USER_EMAIL" required />
+              <input type="email" name='email' autoComplete="new-email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="auth-input" placeholder="USER_EMAIL" required />
             </div>
           </div>
 
@@ -31,7 +43,7 @@ export default function Login() {
             <label className="input-label">Neural Key</label>
             <div className="input-wrapper">
               <Binary className="input-icon" size={18} />
-              <input type="password" name='password' autoComplete="new-password" className="auth-input" placeholder="••••••••••••" required />
+              <input type="password" name='password' autoComplete="new-password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="auth-input" placeholder="••••••••••••" required />
             </div>
           </div>
 
