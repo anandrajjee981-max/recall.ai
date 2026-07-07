@@ -6,7 +6,7 @@ import Hero from './features/pages/Hero';
 import Analiytics from './features/pages/Analiytics';
 import Dashboard from './features/pages/Dashboard';
 import Library from './features/pages/Library';
-import Show from './features/pages/Show';
+
 
 export const router = createBrowserRouter([
   {
@@ -37,8 +37,5 @@ export const router = createBrowserRouter([
     path: "/Library/:id",
     element: <Library />
   },
-  {
-    path :'/show',
-    element :<Show/>
-  }
+
 ]);

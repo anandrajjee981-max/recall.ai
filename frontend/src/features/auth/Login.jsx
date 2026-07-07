@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     const res = await handlelogin(form.email, form.password);
     if (res?.success) {
-      navigate('/show');
+      navigate('/Dashboard');
     }
   }
   return (
