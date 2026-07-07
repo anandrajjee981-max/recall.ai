@@ -1,4 +1,4 @@
-# 🧠 Second Brain AI
+# 🧠 Second Brain AI (Recall Ai)
 
 > Save Once. Find Forever.
 

@@ -8,7 +8,8 @@ import cors from 'cors'
 app.use(cors({
     credentials: true,
     origin: [
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "https://recall-ai-ashen.vercel.app"
         
         
     ]
