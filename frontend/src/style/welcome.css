@@ -30,11 +30,11 @@ body {
 
 /* Responsive Main Container */
 .landing-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   padding: 32px 24px;
   background-color: var(--surface);
-  min-height: 100vh;
 }
 
 /* Header & Nav */

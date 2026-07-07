@@ -1,0 +1,210 @@
+/* ====================================================
+   DEDICATED EXTENSION THEME FOR LIBRARY MEMORY NODES
+   ==================================================== */
+
+.library-view-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface, #131313);
+}
+
+/* Fluid Containment Frame - Prevents Desktop Stretch Disasters */
+.library-content-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Shared Identity Top Bar */
+.lib-header {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lib-title-area {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(218, 185, 255, 0.35);
+}
+
+.lib-back-btn {
+  background-color: var(--surface-container-low, #1c1b1b);
+  color: var(--on-surface, #e5e2e1);
+  border: 1px solid var(--outline-variant, #4d4356);
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lib-back-btn:hover {
+  border-color: var(--primary, #dab9ff);
+  color: var(--primary, #dab9ff);
+  box-shadow: 0 0 10px rgba(218, 185, 255, 0.15);
+}
+
+/* Context Identifier Labeling sub-header */
+.lib-section-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(77, 67, 86, 0.25);
+  padding-bottom: 14px;
+  margin-bottom: 4px;
+}
+
+.lib-section-label h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.lib-node-id {
+  color: #5c5a5e;
+  font-family: monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+}
+
+/* Grid Deck Engine Setup */
+.lib-grid-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* Premium Neo-Cyber Content Cards */
+.lib-node-card {
+  background: linear-gradient(145deg, #161515, #121212);
+  border: 1px solid var(--outline-variant, #4d4356);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 190px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.lib-node-card:hover {
+  border-color: rgba(218, 185, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.lib-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.lib-tag-badge {
+  font-family: monospace;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: rgba(218, 185, 255, 0.04);
+  border: 1px solid rgba(218, 185, 255, 0.1);
+  color: var(--on-surface-variant, #cfc2d9);
+}
+
+.lib-tag-badge.active {
+  background-color: rgba(171, 214, 0, 0.08);
+  border: 1px solid rgba(171, 214, 0, 0.2);
+  color: var(--tertiary, #abd600);
+  font-weight: 600;
+}
+
+.lib-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.lib-card-body h2 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #e5e2e1;
+  line-height: 1.5;
+}
+
+/* Hyper-Clean URL Safe Anchor Triggers */
+.lib-url-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary, #dab9ff) !important;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-family: monospace;
+  margin-top: auto;
+  word-break: break-all;
+  border-top: 1px solid rgba(77, 67, 86, 0.2);
+  padding-top: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.lib-url-anchor:hover {
+  text-decoration: underline !important;
+  opacity: 0.85;
+}
+
+/* Fallback Center Panels (Loading / Empty State) */
+.lib-state-card {
+  width: 100%;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: #161515;
+  border: 1px dashed var(--outline-variant, #4d4356);
+  border-radius: 20px;
+}
+
+.lib-state-card h2 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.lib-state-card p {
+  font-size: 0.88rem;
+  color: var(--on-surface-variant, #cfc2d9);
+  opacity: 0.7;
+}
+
+/* ====================================================
+   NAVBAR BUFFER SYSTEM POSITIONING ADJUSTMENTS
+   ==================================================== */
+@media (min-width: 769px) {
+  .library-view-container {
+    padding-bottom: 92px !important; /* Bottom Deck Clearview */
+  }
+}
+
+@media (max-width: 768px) {
+  .library-view-container {
+    padding-top: 72px !important; /* Top Menu Margin Clearview */
+  }
+}

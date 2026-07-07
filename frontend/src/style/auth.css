@@ -29,7 +29,7 @@
   align-items: center;
   padding: 20px;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Top Status Ticker */

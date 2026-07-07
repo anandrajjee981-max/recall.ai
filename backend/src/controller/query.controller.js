@@ -4,8 +4,15 @@ import { queryGraph } from '../service/graph.service.js';
 
 export default async function processQuery(req, res) {
   try {
-    const { url } = req.body;
+    const { url: bodyUrl, query } = req.body;
+    const url = bodyUrl || query;
     const user = req.user;
+
+    if (!url) {
+      return res.status(400).json({
+        message: 'URL or query is required',
+      });
+    }
 
     const result = await queryGraph.invoke({
       url,
