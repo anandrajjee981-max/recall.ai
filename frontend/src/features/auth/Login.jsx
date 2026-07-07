@@ -9,12 +9,16 @@ export default function Login() {
   const navigate = useNavigate();
   const { handlelogin } = useAuth();
   const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState(null);
 
   async function submitHandler(e) {
     e.preventDefault();
+    setError(null);
     const res = await handlelogin(form.email, form.password);
     if (res?.success) {
       navigate('/Dashboard');
+    } else {
+      setError(res?.error || 'Login failed');
     }
   }
   return (
@@ -31,6 +35,7 @@ export default function Login() {
         </div>
 
         <form className="auth-form" onSubmit={submitHandler}>
+          {error && <div className="auth-error">{error}</div>}
           <div className="input-group">
             <label className="input-label">Recall ID</label>
             <div className="input-wrapper">

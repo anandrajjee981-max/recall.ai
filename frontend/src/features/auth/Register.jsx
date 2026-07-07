@@ -8,12 +8,16 @@ export default function Register() {
   const navigate = useNavigate();
   const { handleregister } = useAuth();
   const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const [error, setError] = useState(null);
 
   async function submitHandler(e) {
     e.preventDefault();
+    setError(null);
     const res = await handleregister(form.username, form.email, form.password);
     if (res?.success) {
       navigate('/login');
+    } else {
+      setError(res?.error || 'Registration failed');
     }
   }
 
@@ -31,6 +35,7 @@ export default function Register() {
         </div>
 
         <form className="auth-form" onSubmit={submitHandler}>
+          {error && <div className="auth-error">{error}</div>}
               <div className="input-group">
             <label className="input-label">Choose Recall ID</label>
             <div className="input-wrapper">

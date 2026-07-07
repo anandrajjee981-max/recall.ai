@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL: "https://recall-ai-mhmx.onrender.com",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000",
   withCredentials: true,
 }); 
 
@@ -13,7 +13,7 @@ export async function register(username, email, password) {
     });
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    throw error.response?.data || { message: error.message || 'Registration failed' };
   } 
 }
 export async function login(email, password) {
@@ -24,7 +24,7 @@ export async function login(email, password) {
         });
         return response.data;
     } catch (error) {
-        throw error.response.data;
+        throw error.response?.data || { message: error.message || 'Login failed' };
     } 
 }
 

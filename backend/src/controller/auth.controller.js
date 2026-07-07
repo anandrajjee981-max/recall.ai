@@ -20,21 +20,30 @@ const user = await usermodel.create({
 })
 const token = jwt.sign({id: user._id},process.env.JWT_SECRET,{expiresIn: "1d"})
 
-res.cookie('token', token, {
-    httpOnly: true,    
-    secure: true,     
-    sameSite: 'none',  
-    maxAge: 24 * 60 * 60 * 1000 
-});
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000,
+};
+
+res.cookie('token', token, cookieOptions);
 
 return res.status(201).json({
-    message : "user registered successfully"
-})
+    success: true,
+    message: "user registered successfully",
+    user: {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+    },
+    token,
+});
 
 }
 catch(err){
-    throw err 
-    res.status(500).json({
+    console.error("Register Error:", err);
+    return res.status(500).json({
         message : "internal server error"
     })
 }
@@ -73,22 +82,24 @@ export async function login(req, res) {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-      
-        res.cookie('token', token, {
-            httpOnly: true,    
-            secure: true,     
-            sameSite: 'none',  
-            maxAge: 24 * 60 * 60 * 1000 
-        });
+        const cookieOptions = {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            maxAge: 24 * 60 * 60 * 1000,
+        };
 
-      
+        res.cookie('token', token, cookieOptions);
+
         return res.status(200).json({
             success: true,
             message: "Login successful",
             user: {
                 id: user._id,
-                email: user.email
-            }
+                email: user.email,
+                username: user.username,
+            },
+            token,
         });
 
     } catch (err) {
