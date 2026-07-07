@@ -2,7 +2,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import Welcome from './features/auth/Welcome';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
-import Anand from './features/a';
+import Hero from './features/pages/Hero';
+import Analiytics from './features/pages/Analiytics';
+import Dashboard from './features/pages/Dashboard';
+
 
 export const router = createBrowserRouter([
 {
@@ -18,8 +21,16 @@ export const router = createBrowserRouter([
     element:<Register/>
 },
 {
-    path :"/page",
-    element:<Anand/>
+    path : "/Hero",
+    element: <Hero/>
+},
+{
+    path : "/Analiytics",
+    element: <Analiytics/>
+},
+{
+    path : "/Dashboard",
+    element: <Dashboard/>
 }
 
 
