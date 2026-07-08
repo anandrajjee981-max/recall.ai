@@ -287,58 +287,18 @@ Stores:
 
 Possible options:
 
-- OpenAI GPT
-- Gemini
-- Claude
-- Local LLM (Ollama)
+- Mistral Ai
+- Cohere Ai
+
 
 ---
 
 ### Framework
 
-- LangChain
-
-or
-
-- LangGraph (future agent workflows)
+- LangGraph ( agent workflows)
 
 ---
 
-### Embedding Models
-
-Examples:
-
-- OpenAI Embeddings
-- Gemini Embeddings
-- BAAI bge
-- Nomic Embeddings
-
----
-
-### Vector Database
-
-Choose one:
-
-- Pinecone
-- Qdrant
-- Weaviate
-- Chroma
-- pgvector
-
-Purpose:
-
-Semantic search
-
----
-
-## Object Storage
-
-For thumbnails/files:
-
-- Cloudinary
-- AWS S3
-
----
 
 # 🤖 AI Pipeline
 
@@ -398,33 +358,6 @@ Ready for Search
 
 ---
 
-# 🔍 Search Flow
-
-```
-User Query
-
-↓
-
-Embedding
-
-↓
-
-Vector Search
-
-↓
-
-Relevant Items
-
-↓
-
-LLM Response
-
-↓
-
-Display Results
-```
-
----
 
 # 📦 Database Collections
 
@@ -440,9 +373,7 @@ libraries
 saved_items
 ```
 
-```
-embeddings
-```
+
 
 ```
 tags
@@ -505,6 +436,13 @@ search_history
 - Content Creators
 - Product Managers
 - Entrepreneurs
+
+---
+# 🔒 Useful credentials (Login)
+
+- Email : anandrajjee981@gmail.com
+- Password : test123
+
 
 ---
 
